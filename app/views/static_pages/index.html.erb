@@ -1,6 +1,6 @@
-<h1>HELLO RAILS</h1>
+<h1>検索サイト</h1>
+<h2>フォームにキーワードを入力してください</h2>
 <%= form_with do |form| %>
-  <%= form.label :word %>
   <%= form.text_field :word %>
-  <%= form.submit %>
+  <%= form.submit("検索") %>
 <% end %>
