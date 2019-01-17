@@ -33,13 +33,28 @@ class SearchController < ApplicationController
           # 上で設定した検索ワードで検索をかける
           :q => opts[:q],
           # 上で設定した数だけ表示させる
-          :maxResults => opts[:max_results],
-          # 上で設定した順に表示させる
-          :order => opts[:order],
+          :maxResults => opts[:max_results]
         }
       )
 
-      @movies = search_response.data.items
+      videos = []
+    channels = []
+    playlists = []
+
+    search_response.data.items.each do |search_result|
+      case search_result.id.kind
+        when 'youtube#video'
+          videos << "#{search_result.snippet.title} (#{search_result.id.videoId})"
+        when 'youtube#channel'
+          channels << "#{search_result.snippet.title} (#{search_result.id.channelId})"
+        when 'youtube#playlist'
+          playlists << "#{search_result.snippet.title} (#{search_result.id.playlistId})"
+      end
+    end
+
+    puts "Videos:\n", videos, "\n"
+    puts "Channels:\n", channels, "\n"
+    puts "Playlists:\n", playlists, "\n"
 
     rescue Google::APIClient::TransmissionError => e
       puts e.result.body
