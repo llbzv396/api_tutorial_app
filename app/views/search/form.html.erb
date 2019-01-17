@@ -1,0 +1,10 @@
+<h3>① 郵便番号から住所を検索</h3>
+<%= form_with url: search_postal_url, local: true do |form| %>
+  <%= form.text_field :word %>
+  <%= form.submit("検索") %>
+<% end %>
+<h3>② YouTubeで動画を検索</h3>
+<%= form_with url: search_youtube_url, local: true do |form| %>
+  <%= form.text_field :word %>
+  <%= form.submit("検索") %>
+<% end %>

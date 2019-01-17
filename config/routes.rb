@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
-  root 'static_pages#index'
-  post '/search', to: 'search#search'
+  root 'search#form'
+  post '/search/postal',  to: 'search#postal'
+  post '/search/youtube', to: 'search#youtube'
 end
