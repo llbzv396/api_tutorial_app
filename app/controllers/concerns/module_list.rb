@@ -1,8 +1,7 @@
-require 'active_support'
-require 'net/http'
+require 'active_support/concern'
 
-module GetDataByJson
-  extend ActiveSupport::Concern
+module GetStreetAddressByJson
+  require 'net/http'
 
   def get_street_address_by_json(keyword)
     # hash形式でパラメータ文字列を指定し、URL形式にエンコード
@@ -23,8 +22,31 @@ module GetDataByJson
       http.get(uri.request_uri)
     end
   end
+end
 
-  def get_youtube_videos_by_json(keyword)
-    @word = keyword
+module GetYouTubeVideosByJson
+  require 'rubygems'
+  require 'google/api_client'
+  require 'trollop'
+
+  DEVELOPER_KEY = 'AIzaSyAzWuLA-vXq0xDIvnV4GVNz7ly7_6LxAh8'
+  YOUTUBE_API_SERVICE_NAME = 'youtube'
+  YOUTUBE_API_VERSION = 'v3'
+
+  def get_service
+    client = Google::APIClient.new(
+      :key => DEVELOPER_KEY,
+      :authorization => nil,
+      :application_name => $PROGRAM_NAME,
+      :application_version => '1.0.0'
+    )
+      youtube = client.discovered_api(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION)
+    return client, youtube
   end
+end
+
+module ModuleList
+  extend ActiveSupport::Concern
+  include GetStreetAddressByJson
+  include GetYouTubeVideosByJson
 end

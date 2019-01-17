@@ -1,5 +1,5 @@
 class SearchController < ApplicationController
-  include GetDataByJson
+  include ModuleList
 
   def postal
     get_street_address_by_json(params[:word])
@@ -16,7 +16,33 @@ class SearchController < ApplicationController
   end
 
   def youtube
-    get_youtube_videos_by_json(params[:word])
-    @word = "入力してください" if @word.blank?
+    opts = Trollop::options do
+      # defaultの中を検索したいワードにする
+      opt :q, 'Search term', :type => String, :default => 'Google'
+       # 検索結果の表示数を決める（最大50）
+      opt :max_results, 'Max results', :type => :int, :default => 25
+      end
+
+    client, youtube = get_service
+
+    begin
+      search_response = client.execute!(
+        :api_method => youtube.seach.list,
+        :parameters => {
+          :part => 'snippet',
+          # 上で設定した検索ワードで検索をかける
+          :q => opts[:q],
+          # 上で設定した数だけ表示させる
+          :maxResults => opts[:max_results],
+          # 上で設定した順に表示させる
+          :order => opts[:order],
+        }
+      )
+
+      @movies = search_response.data.items
+
+    rescue Google::APIClient::TransmissionError => e
+      puts e.result.body
+    end
   end
 end
