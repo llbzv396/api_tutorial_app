@@ -17,6 +17,8 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'mini_racer', platforms: :ruby
 gem 'google-api-client', ' ~> 0.7.1'
 gem 'trollop', '~> 2.1'
+gem 'bootstrap', '~> 4.2.1'
+gem 'jquery-rails'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
