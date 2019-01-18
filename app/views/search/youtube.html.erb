@@ -1,6 +1,6 @@
 <div class="row">
   <% @movies["items"].each do |movie| %>
-  <div class="col-md-4">
+  <div class="col-md-4 col-md-offset-1 youtube">
     <p>タイトル: <%= link_to "#{movie["snippet"]["title"]}", "https://www.youtube.com/watch?v=#{ movie["id"]["videoId"] }", target: 'blank' %></p>
     <p>説明: <%= movie["snippet"]["description"] %></p>
     <div class="video_box">
