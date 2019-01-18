@@ -14,6 +14,18 @@ class SearchController < ApplicationController
 
   def youtube
     get_youtube_videos_by_json(params[:word])
-    @movies = JSON.parse(@response.body)    
+    @movies = JSON.parse(@response.body)
+  end
+
+  def rakuten
+    get_rkauten_products_by_json(params[:word])
+    @products = JSON.parse(@response.body)
+    @products = @products["Items"]
+  end
+
+  def qiita
+    get_qiita_posts_by_json(params[:word],params[:tag])
+    @posts = JSON.parse(@response.body)
+    #byebug
   end
 end

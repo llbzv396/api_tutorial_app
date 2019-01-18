@@ -1,0 +1,10 @@
+<% @products.each do |item| %>
+<div>
+    <div class="product_box">
+      <p>タイトル:<%= link_to item["Item"]["itemName"], item["Item"]["itemUrl"] %></p>
+      <p>商品金額:<%= item["Item"]["itemPrice"] %>円</p>
+      <p>商品説明:<%= render html: item["Item"]["itemCaption"].html_safe %></p>
+      <img src="<%= item["Item"]["mediumImageUrls"].first["imageUrl"] %>"
+    </div>
+  </div>
+<% end %>

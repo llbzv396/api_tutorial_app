@@ -1,0 +1,12 @@
+<% @posts.each.with_index do |post, index| %>
+<div class="product_box">
+  <p><%= link_to post["title"], post["url"] %></p>
+  <p><%= post["updated_at"] %></p>
+  <div onclick="obj=document.getElementById(<%= "#{index}" %>).style; obj.display=(obj.display=='none')?'block':'none';">
+    <a style="cursor:pointer;">▼ クリックで展開</a>
+  </div>
+  <div id=<%= "#{index}" %> style="display:none;clear:both;">
+    <%= render html: post["rendered_body"].html_safe %>
+  </div>
+  </div>
+<% end %>
