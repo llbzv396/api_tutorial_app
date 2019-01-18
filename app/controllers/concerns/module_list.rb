@@ -1,7 +1,7 @@
 require 'active_support/concern'
+require 'net/http'
 
 module GetStreetAddressByJson
-  require 'net/http'
 
   def get_street_address_by_json(keyword)
     # hash形式でパラメータ文字列を指定し、URL形式にエンコード
@@ -25,23 +25,18 @@ module GetStreetAddressByJson
 end
 
 module GetYouTubeVideosByJson
-  require 'rubygems'
-  require 'google/api_client'
-  require 'trollop'
 
   DEVELOPER_KEY = 'AIzaSyAzWuLA-vXq0xDIvnV4GVNz7ly7_6LxAh8'
   YOUTUBE_API_SERVICE_NAME = 'youtube'
   YOUTUBE_API_VERSION = 'v3'
 
-  def get_service
-    client = Google::APIClient.new(
-      :key => DEVELOPER_KEY,
-      :authorization => nil,
-      :application_name => 'MyApp',
-      :application_version => '1.0.0'
-    )
-      youtube = client.discovered_api(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION)
-    return client, youtube
+  def get_youtube_videos_by_json(keyword)
+    query = URI.encode_www_form({ q: "#{keyword}" })
+    uri = URI.parse("https://www.googleapis.com/#{YOUTUBE_API_SERVICE_NAME}/#{YOUTUBE_API_VERSION}/search?type=video&maxResults=15&part=snippet&#{query}&key=#{DEVELOPER_KEY}")
+    http = Net::HTTP.new(uri.host, uri.port)
+    request = Net::HTTP::Get.new(uri.request_uri)
+    http.use_ssl = true
+    @response = http.request(request)
   end
 end
 
