@@ -1,10 +1,16 @@
-<h3>① 郵便番号から住所を検索</h3>
-<%= form_with url: search_postal_url, local: true do |form| %>
-  <%= form.text_field :word, :required => true %>
-  <%= form.submit("検索") %>
-<% end %>
-<h3>② YouTubeで動画を検索</h3>
-<%= form_with url: search_youtube_url, local: true do |form| %>
-  <%= form.text_field :word, :required => true %>
-  <%= form.submit("検索") %>
-<% end %>
+<div class="row form">
+  <div class="col text-center">
+    <h3 class="title">① 郵便番号から住所を検索</h3>
+    <%= form_with url: search_postal_url, class: "searching", local: true do |form| %>
+      <%= form.text_field :word, :required => true %>
+      <%= form.submit("検索", class: "push") %>
+    <% end %>
+  </div>
+  <div class="col text-center">
+    <h3 class="title">② YouTubeで動画を検索</h3>
+    <%= form_with url: search_youtube_url, class: "searching", local: true do |form| %>
+      <%= form.text_field :word, :required => true %>
+      <%= form.submit("検索") %>
+    <% end %>
+  </div>
+</div>

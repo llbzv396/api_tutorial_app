@@ -1,7 +1,26 @@
-<p>郵便番号: <%= @zipcode %></p>
-<p>フリガナ: <%= @reading1 %></p>
-<p>都道府県: <%= @address1 %></p>
-<p>フリガナ: <%= @reading2 %></p>
-<p>市区町村: <%= @address2 %></p>
-<p>フリガナ: <%= @reading3 %></p>
-<p>町名: <%= @address3 %></p>
+<div class="postal_container">
+  <div class="row postal" id="top_row">
+    <div class="col-md-3 postalcode text-center" id="top_col">
+      <p class="data_item">郵便番号</p>
+    </div>
+    <div class="col-md-6 postalcode" id="top_col">
+      <p class="acquired_data">〒 <%= @zipcode[0..2] %>-<%= @zipcode[3..6]%></p>
+    </div>
+  </div>
+  <div class="row postal">
+    <div class="col-md-3 prefectures text-center" id="second_col">
+      <p class="data_item">都道府県</p>
+    </div>
+    <div class="col-md-6" id="second_col">
+      <p class="acquired_data"><%= @address1 %></p>
+    </div>
+  </div>
+  <div class="row postal">
+    <div class="col-md-3 text-center" id="bottom_col">
+      <p class="data_item">市区町村</p>
+    </div>
+    <div class="col-md-6">
+      <p class="acquired_data"><%= @address2 %><%= @address3 %></p>
+    </div>
+  </div>
+</div>

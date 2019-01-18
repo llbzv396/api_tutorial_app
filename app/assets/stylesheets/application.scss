@@ -13,3 +13,92 @@
  *= require_tree .
  *= require_self
  */
+
+@import "bootstrap";
+
+.postal_container {
+  margin: 30px;
+}
+
+h3.title {
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.searching {
+  margin-bottom: 15px;
+}
+
+div.col.text-center {
+  padding: 3px 5px;
+  margin: 1px 5px;
+  font-weight: bold;
+  background-color: #f0f8ff;
+  border: solid 3px #6091d3;
+  border-radius: 10px;
+}
+
+div.row.form {
+  padding: 30px;
+}
+
+div.row.postal {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+div.row.postal.top {
+  padding-top: 30px;
+}
+
+input[type="text"] {
+  border: solid 2px #6091d3;
+}
+
+input[type="submit"] {
+  border: solid 2px #6091d3;
+  background-color: #6091d3;
+  color: white;
+}
+
+div.col-md-3 {
+  background-color: #f0f8ff;
+  font-weight: bold;
+  border: solid 5px #6091d3;
+  border-right: none;
+}
+
+div.col-md-6 {
+  background-color: #f0f8ff;
+  border: solid 5px #6091d3;;
+}
+
+div.row.postal {
+  height: 100px;
+}
+
+#top_row {
+  margin-top: 20px;
+}
+
+p.data_item {
+  line-height: 100px;
+  font-size:50px;
+}
+
+p.acquired_data {
+  line-height: 100px;
+  font-size:50px;
+}
+
+#top_col {
+  border-bottom: none;
+}
+
+#second_col {
+  border-bottom: none;
+}
+
+#left_col {
+
+}

@@ -13,6 +13,10 @@ class SearchController < ApplicationController
     @reading2 = @result["results"][0]["kana2"]
     @address3 = @result["results"][0]["address3"]
     @reading3 = @result["results"][0]["kana3"]
+
+    @reading1 = NKF.nkf("-Xw",@reading1)
+    @reading2 = NKF.nkf("-Xw",@reading2)
+    @reading3 = NKF.nkf("-Xw",@reading3)
   end
 
   def youtube
