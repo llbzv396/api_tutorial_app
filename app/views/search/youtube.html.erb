@@ -1,7 +1,13 @@
-<% @movies["items"].each do |movie| %>
-<div>
-  <p>タイトル: <%= link_to "#{movie["snippet"]["title"]}", "https://www.youtube.com/watch?v=#{ movie["id"]["videoId"] }", target: 'blank' %></p>
-  <p>説明: <%= movie["snippet"]["description"] %></p>
-  <iframe width="560" height="315" src="https://www.youtube.com/watch?v=#{ movie["id"]["videoId"] }" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="row">
+  <% @movies["items"].each do |movie| %>
+  <div class="col-md-4">
+    <p>タイトル: <%= link_to "#{movie["snippet"]["title"]}", "https://www.youtube.com/watch?v=#{ movie["id"]["videoId"] }", target: 'blank' %></p>
+    <p>説明: <%= movie["snippet"]["description"] %></p>
+    <div class="video_box">
+      <iframe width="300" height="200" src="https://www.youtube.com/watch?v=#{ movie["id"]["videoId"] }" frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+  <% end %>
 </div>
-<% end %>

@@ -14,7 +14,6 @@ class SearchController < ApplicationController
 
   def youtube
     get_youtube_videos_by_json(params[:word])
-    @movies = JSON.parse(@response.body)
-    #byebug
+    @movies = JSON.parse(@response.body)    
   end
 end
