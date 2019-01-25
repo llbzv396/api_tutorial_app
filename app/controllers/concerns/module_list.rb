@@ -25,12 +25,9 @@ module GetStreetAddressByJson
 end
 
 module GetYouTubeVideosByJson
-  DEVELOPER_KEY = 'AIzaSyAzWuLA-vXq0xDIvnV4GVNz7ly7_6LxAh8'
-  YOUTUBE_API_SERVICE_NAME = 'youtube'
-  YOUTUBE_API_VERSION = 'v3'
   def get_youtube_videos_by_json(keyword)
     query = URI.encode_www_form({ q: "#{keyword}" })
-    uri = URI.parse("https://www.googleapis.com/#{YOUTUBE_API_SERVICE_NAME}/#{YOUTUBE_API_VERSION}/search?type=video&maxResults=15&part=snippet&#{query}&key=#{DEVELOPER_KEY}")
+    uri = URI.parse("https://www.googleapis.com/#{ENV["YOUTUBE_API_SERVICE_NAME"]}/#{ENV["YOUTUBE_API_VERSION"]}/search?type=video&maxResults=15&part=snippet&#{query}&key=#{ENV["YOUTUBE_DEVELOPER_KEY"]}")
     http = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Get.new(uri.request_uri)
     http.use_ssl = true
@@ -39,10 +36,9 @@ module GetYouTubeVideosByJson
 end
 
 module GetRakutenProductsByJson
-  APPLICATION_ID = 1004101381634799173
   def get_rkauten_products_by_json(keyword)
     query = URI.encode_www_form({ keyword: "#{keyword}" })
-    uri = URI.parse("https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706?format=json&#{query}&applicationId=#{APPLICATION_ID}")
+    uri = URI.parse("https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706?format=json&#{query}&applicationId=#{ENV["RAKUTEN_APPLICATION_ID"]}")
     http = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Get.new(uri.request_uri)
     http.use_ssl = true
