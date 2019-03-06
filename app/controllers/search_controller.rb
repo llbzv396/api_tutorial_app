@@ -1,9 +1,9 @@
 class SearchController < ApplicationController
   include ModuleList
 
-  def postal
-    if /\d{3}-\d{4}/ === params[:word] || /\d{7}/ === params[:word]
-      get_street_address_by_json(params[:word])
+  def postal(word = params[:word])
+    if /\d{3}-\d{4}/ === word || /\d{7}/ === word
+      get_street_address_by_json(word)
     else
       flash[:ERROR] = '正しい郵便番号を入力してください'
       redirect_to root_path
@@ -24,8 +24,8 @@ class SearchController < ApplicationController
     end
   end
 
-  def youtube
-    get_youtube_videos_by_json(params[:word])
+  def youtube(word = params[:word])
+    get_youtube_videos_by_json(word)
     @movies = JSON.parse(@response.body)
     if @movies["items"].blank?
       flash[:ERROR] = '該当する動画はありません'
@@ -34,8 +34,8 @@ class SearchController < ApplicationController
     end
   end
 
-  def rakuten
-    get_rkauten_products_by_json(params[:word])
+  def rakuten(word = params[:word])
+    get_rkauten_products_by_json(word)
     @products = JSON.parse(@response.body)
     if @products["Items"].blank?
       flash[:ERROR] = '該当する商品はありません'
@@ -45,13 +45,17 @@ class SearchController < ApplicationController
     @products = @products["Items"]
   end
 
-  def qiita
-    get_qiita_posts_by_json(params[:word],params[:tag])
+  def qiita(word = params[:word], tag = params[:tag])
+    get_qiita_posts_by_json(word, tag)
     @posts = JSON.parse(@response.body)
     if @posts.blank?
       flash[:ERROR] = '該当する記事はありません'
       redirect_to root_path
       return
     end
+  end
+
+  def reload
+    redirect_to root_path
   end
 end
