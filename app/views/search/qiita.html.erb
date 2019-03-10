@@ -1,3 +1,4 @@
+<%= render 'return' %>
 <% @posts.each.with_index do |post, index| %>
 <div class="product_box">
   <p><%= link_to post["title"], post["url"] %></p>

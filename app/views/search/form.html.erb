@@ -1,14 +1,14 @@
 <div class="row form">
   <div class="col-md-5 text-center mx-auto">
     <h3 class="title">① 郵便番号から住所を検索</h3>
-    <%= form_with url: search_postal_url, class: "searching", local: true do |form| %>
+    <%= form_with url: search_postal_url, method: :get, class: "searching", local: true do |form| %>
       <%= form.text_field :word, :required => true %>
       <%= form.submit("検索", class: "push") %>
     <% end %>
   </div>
   <div class="col-md-5 text-center mx-auto">
     <h3 class="title">② YouTubeで動画を検索</h3>
-    <%= form_with url: search_youtube_url, class: "searching", local: true do |form| %>
+    <%= form_with url: search_youtube_url, method: :get, class: "searching", local: true do |form| %>
       <%= form.text_field :word, :required => true %>
       <%= form.submit("検索") %>
     <% end %>
@@ -17,14 +17,14 @@
 <div class="row form">
   <div class="col-md-5 text-center mx-auto">
     <h3 class="title">③ 楽天で商品を検索</h3>
-    <%= form_with url: search_rakuten_url, class: "searching", local: true do |form| %>
+    <%= form_with url: search_rakuten_url, method: :get, class: "searching", local: true do |form| %>
       <%= form.text_field :word, :required => true %>
       <%= form.submit("検索") %>
     <% end %>
   </div>
   <div class="col-md-5 text-center mx-auto">
     <h3 class="title">④ Qiitaで記事を検索</h3>
-    <%= form_with url: search_qiita_url, class: "searching", local: true do |form| %>
+    <%= form_with url: search_qiita_url, method: :get, class: "searching", local: true do |form| %>
       <%= form.text_field :word, :required => true %>
       <%= form.text_field :tag, size: 8, placeholder: 'タグを入力', required: true %>
       <%= form.submit("検索") %>

@@ -54,8 +54,4 @@ class SearchController < ApplicationController
       return
     end
   end
-
-  def reload
-    redirect_to root_path
-  end
 end
